@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,9 +11,15 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-$router->group(['middleware' => 'subdomain:api'], function () use ($router) {
+$router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('posts','PostController@index');
     $router->get('posts/paginate','PostController@paginate');
+    $router->get('posts/{id}','PostController@show');
+    $router->put('posts/{id}','PostController@update');
+});
+
+$router->get('test',function (){
+    return str_slug('asd asdasdasd SCźćżą');// rtrim(app()->basePath('public/'.'$path'), '/');
 });
 
 $router->get('/{route:.*}/', function ()  {

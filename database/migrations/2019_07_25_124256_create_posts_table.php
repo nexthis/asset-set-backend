@@ -17,8 +17,12 @@ class CreatePostsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('colors');
-            $table->integer('likes');
+            $table->string('description');
+            $table->string('tags');
+            $table->string('url');
+            $table->string('slug');
             $table->string('image');
+            $table->integer('likes');
             $table->timestamps();
         });
     }

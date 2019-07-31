@@ -16,6 +16,13 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('posts/paginate','PostController@paginate');
     $router->get('posts/{id}','PostController@show');
     $router->put('posts/{id}','PostController@update');
+    
+    $router->post(
+        'auth/login', 
+        [
+           'uses' => 'AuthController@authenticate'
+        ]
+    );
 });
 
 $router->get('test',function (){

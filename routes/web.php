@@ -23,6 +23,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         $router->delete('posts/{id}','PostController@delete');
         $router->get('posts/{id}','PostController@show');
         $router->put('posts/{id}','PostController@update');
+
+        $router->get('users','UserController@index');
     });
 
     

@@ -1,5 +1,7 @@
 <?php
-use Illuminate\Support\Facades\Storage;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     
     $router->group(['middleware'=> 'jwt.auth'], function () use ($router){
         $router->get('posts','PostController@index');
+        $router->post('posts','PostController@create');
+        $router->delete('posts/{id}','PostController@delete');
         $router->get('posts/{id}','PostController@show');
         $router->put('posts/{id}','PostController@update');
     });
@@ -27,7 +31,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 });
 
 $router->get('test',function (){
-    return str_slug('asd asdasdasd SCźćżą');// rtrim(app()->basePath('public/'.'$path'), '/');
+    return URL::asset('s');// rtrim(app()->basePath('public/'.'$path'), '/');
 });
 
 $router->get('/{route:.*}/', function ()  {

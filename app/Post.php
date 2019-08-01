@@ -15,5 +15,8 @@ class Post extends Model
      * @var array
      */
     //protected $fillable = [];
-
+    protected $casts  = [
+        'colors'=>'array',
+        'tags'=>'array'
+    ];
 }

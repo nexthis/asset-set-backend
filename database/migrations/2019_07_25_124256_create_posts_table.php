@@ -22,7 +22,7 @@ class CreatePostsTable extends Migration
             $table->string('url');
             $table->string('slug');
             $table->string('image');
-            $table->integer('likes');
+            $table->integer('likes')->default(0);
             $table->timestamps();
         });
     }

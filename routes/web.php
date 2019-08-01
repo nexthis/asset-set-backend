@@ -12,17 +12,18 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 $router->group(['prefix' => 'api'], function () use ($router) {
-    $router->get('posts','PostController@index');
+
     $router->get('posts/paginate','PostController@paginate');
-    $router->get('posts/{id}','PostController@show');
-    $router->put('posts/{id}','PostController@update');
     
-    $router->post(
-        'auth/login', 
-        [
-           'uses' => 'AuthController@authenticate'
-        ]
-    );
+    $router->group(['middleware'=> 'jwt.auth'], function () use ($router){
+        $router->get('posts','PostController@index');
+        $router->get('posts/{id}','PostController@show');
+        $router->put('posts/{id}','PostController@update');
+    });
+
+    
+
+    $router->post('auth', 'AuthController@authenticate');
 });
 
 $router->get('test',function (){
